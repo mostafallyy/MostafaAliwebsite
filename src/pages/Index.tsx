@@ -12,35 +12,30 @@ const SP = { type: "spring", stiffness: 480, damping: 32, mass: 0.8 } as const;
 const DISPLAY = "'Space Grotesk', 'Inter', system-ui, sans-serif";
 const MONO    = "'JetBrains Mono', 'Fira Code', monospace";
 
-// ─── Hero manifesto lines ─────────────────────────────────────────────────────
-const MANIFESTO = [
-  "The intelligence is no longer behind the screen;",
-  "it's everywhere, thinking ahead of you.",
-  "The barrier has shattered; code has finally",
-  "claimed its physical throne.",
-  "Welcome to the front lines.",
-  "The world is officially online.",
+// ─── Hero subtitle lines ──────────────────────────────────────────────────────
+const SUBTITLE_LINES = [
+  "Mostafa Ali — Computer Science Student",
 ];
 
-// ─── Manifesto blur-in ────────────────────────────────────────────────────────
-function ManifestoLine({ text, delay }: { text: string; delay: number }) {
+// ─── Fade-in line ─────────────────────────────────────────────────────────────
+function FadeLine({ text, delay }: { text: string; delay: number }) {
   return (
     <motion.span
       className="block"
-      initial={{ opacity: 0, filter: "blur(14px)", y: 6 }}
+      initial={{ opacity: 0, filter: "blur(10px)", y: 4 }}
       animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-      transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {text}
     </motion.span>
   );
 }
 
-// ─── Resume card (English) ───────────────────────────────────────────────────
+// ─── Resume card ──────────────────────────────────────────────────────────────
 function ResumeCard() {
   return (
     <motion.div
-      className="flex-1 rounded-2xl border border-zinc-800 bg-zinc-950/80 backdrop-blur-md p-8 flex flex-col justify-between"
+      className="flex-1 rounded-2xl border border-slate-700/50 bg-slate-900/80 backdrop-blur-md p-8 flex flex-col justify-between"
       initial={{ x: 240, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ ...SP, delay: 0 }}
@@ -48,7 +43,7 @@ function ResumeCard() {
     >
       <div>
         <p
-          className="text-[10px] uppercase tracking-[0.25em] text-zinc-500 mb-4"
+          className="text-[10px] uppercase tracking-[0.25em] text-slate-500 mb-4"
           style={{ fontFamily: MONO }}
         >
           Résumé
@@ -61,33 +56,33 @@ function ResumeCard() {
           Experience &amp; Skills
         </h3>
 
-        <ul className="space-y-3 text-zinc-400 text-sm" style={{ fontFamily: DISPLAY }}>
+        <ul className="space-y-3 text-slate-400 text-sm" style={{ fontFamily: DISPLAY }}>
           <li className="flex items-start gap-2">
-            <span className="text-cyan-400 mt-0.5 shrink-0">▸</span>
+            <span className="text-indigo-400 mt-0.5 shrink-0">▸</span>
             <span>
-              <strong className="text-zinc-300 font-semibold">Systems programming</strong>
+              <strong className="text-slate-300 font-semibold">Systems programming</strong>
               {" "}— C, low-level optimisation &amp; memory safety
             </span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-cyan-400 mt-0.5 shrink-0">▸</span>
+            <span className="text-indigo-400 mt-0.5 shrink-0">▸</span>
             <span>
-              <strong className="text-zinc-300 font-semibold">Full-stack web</strong>
+              <strong className="text-slate-300 font-semibold">Full-stack web</strong>
               {" "}— React, TypeScript, Node.js, Vite
             </span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-cyan-400 mt-0.5 shrink-0">▸</span>
+            <span className="text-indigo-400 mt-0.5 shrink-0">▸</span>
             <span>
-              <strong className="text-zinc-300 font-semibold">Security auditing</strong>
-              {" "}— static analysis, ISO/NIST compliance, SIEM
+              <strong className="text-slate-300 font-semibold">Security &amp; compliance</strong>
+              {" "}— static analysis, ISO/NIST standards, SIEM
             </span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-cyan-400 mt-0.5 shrink-0">▸</span>
+            <span className="text-indigo-400 mt-0.5 shrink-0">▸</span>
             <span>
-              <strong className="text-zinc-300 font-semibold">Data analysis</strong>
-              {" "}— Power BI, real-time SOC dashboards
+              <strong className="text-slate-300 font-semibold">Data analysis</strong>
+              {" "}— Power BI, real-time dashboards, visualisation
             </span>
           </li>
         </ul>
@@ -98,7 +93,7 @@ function ResumeCard() {
         download="Mostafa_Ali_Resume_2026.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 inline-flex items-center gap-2 text-sm font-mono text-cyan-400 hover:text-cyan-300 transition-colors pointer-events-auto"
+        className="mt-6 inline-flex items-center gap-2 text-sm font-mono text-indigo-400 hover:text-indigo-300 transition-colors pointer-events-auto"
         style={{ fontFamily: MONO }}
       >
         Download PDF ↓
@@ -111,7 +106,7 @@ function ResumeCard() {
 function NameCard() {
   return (
     <motion.div
-      className="flex-1 rounded-2xl border border-zinc-800 bg-zinc-950/80 backdrop-blur-md p-8 flex flex-col justify-between"
+      className="flex-1 rounded-2xl border border-slate-700/50 bg-slate-900/80 backdrop-blur-md p-8 flex flex-col justify-between"
       initial={{ x: -240, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ ...SP, delay: 0 }}
@@ -119,13 +114,12 @@ function NameCard() {
     >
       <div>
         <p
-          className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-4"
+          className="text-[10px] uppercase tracking-[0.3em] text-slate-500 mb-4"
           style={{ fontFamily: MONO }}
         >
-          Secure Systems Engineer
+          Computer Science Student
         </p>
 
-        {/* Datatype Variable aesthetic: massive, architectural, wide tracking */}
         <h2
           className="text-[clamp(3.5rem,10vw,6.5rem)] font-black leading-[0.9] text-white"
           style={{
@@ -138,7 +132,7 @@ function NameCard() {
           <span
             className="block"
             style={{
-              background: "linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%)",
+              background: "linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -148,7 +142,7 @@ function NameCard() {
           <span
             className="block"
             style={{
-              background: "linear-gradient(135deg, #22d3ee 0%, #6366f1 100%)",
+              background: "linear-gradient(135deg, #818cf8 0%, #6366f1 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -157,22 +151,21 @@ function NameCard() {
           </span>
         </h2>
 
-        {/* New tagline */}
         <p
-          className="mt-4 text-zinc-400 text-sm leading-snug italic"
+          className="mt-4 text-slate-400 text-sm leading-snug"
           style={{ fontFamily: DISPLAY }}
         >
-          Cybersecurity architect: exploiting the world's vulnerabilities.
+          Building fast, clean, and thoughtful software.
         </p>
       </div>
 
       <p
-        className="text-zinc-500 text-sm leading-relaxed mt-6"
+        className="text-slate-500 text-sm leading-relaxed mt-6"
         style={{ fontFamily: DISPLAY }}
       >
-        C · Python · Cyberecurity
+        C · Python · TypeScript · React
         <br />
-        <span className="text-zinc-600">Toronto, ON</span>
+        <span className="text-slate-600">Toronto, ON</span>
       </p>
     </motion.div>
   );
@@ -212,13 +205,13 @@ function Footer() {
   ];
 
   return (
-    <footer className="relative z-20 border-t border-zinc-800/60 bg-zinc-950/80 backdrop-blur-md pb-0">
+    <footer className="relative z-20 border-t border-slate-800/60 bg-slate-950/80 backdrop-blur-md pb-0">
       <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <span
-          className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-600"
+          className="text-[10px] font-mono uppercase tracking-[0.25em] text-slate-600"
           style={{ fontFamily: MONO }}
         >
-          © 2026 Mostafa Ali · LOW LEVEL SECURITY ARCHITECT
+          © 2026 Mostafa Ali · Computer Science Student
         </span>
 
         <div className="flex items-center gap-6">
@@ -229,10 +222,10 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="flex items-center gap-2 text-zinc-500 hover:text-cyan-400 transition-colors duration-200 text-xs font-mono group"
+              className="flex items-center gap-2 text-slate-500 hover:text-indigo-400 transition-colors duration-200 text-xs font-mono group"
               style={{ fontFamily: MONO }}
             >
-              <span className="group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.8)] transition-all duration-200">
+              <span className="group-hover:drop-shadow-[0_0_6px_rgba(129,140,248,0.7)] transition-all duration-200">
                 {icon}
               </span>
               <span className="hidden md:inline">{label}</span>
@@ -255,7 +248,7 @@ const Index = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
-    <div ref={containerRef} className="relative" style={{ background: "#0F0F0F" }}>
+    <div ref={containerRef} className="relative" style={{ background: "#0d1117" }}>
 
       {/* ── Fixed Earth Canvas ── */}
       <div className="fixed inset-0 z-0">
@@ -266,43 +259,43 @@ const Index = () => {
       <div className="fixed inset-0 z-10 pointer-events-none flex flex-col items-center justify-center px-6">
         <motion.div className="text-center max-w-4xl" style={{ opacity: heroOpacity }}>
 
-          {/* Name — Datatype Variable, massive */}
+          {/* Name */}
           <h1
             className="text-[clamp(4rem,14vw,10rem)] font-black leading-[0.85] tracking-[-0.03em] uppercase mb-8"
             style={{
               fontFamily: DISPLAY,
               fontWeight: 900,
-              background: "linear-gradient(135deg, #ffffff 30%, #6366f1 100%)",
+              background: "linear-gradient(135deg, #ffffff 30%, #818cf8 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
           >
-            <ManifestoLine text="MOSTAFA" delay={0.1} />
-            <ManifestoLine text="ALI" delay={0.25} />
+            <FadeLine text="MOSTAFA" delay={0.1} />
+            <FadeLine text="ALI" delay={0.25} />
           </h1>
 
-          {/* Manifesto copy — crisp white with shadow for contrast over Earth */}
+          {/* Subtitle */}
           <div
-            className="text-sm md:text-base leading-relaxed uppercase tracking-[0.12em] space-y-1 border-t border-zinc-700 pt-6"
+            className="text-base md:text-lg leading-relaxed tracking-[0.06em] border-t border-slate-700/60 pt-6"
             style={{
-              fontFamily: MONO,
-              color: "rgba(255,255,255,0.92)",
+              fontFamily: DISPLAY,
+              color: "rgba(203,213,225,0.9)",
               textShadow: "0 1px 8px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6)",
             }}
           >
-            {MANIFESTO.map((line, i) => (
-              <ManifestoLine key={i} text={line} delay={0.4 + i * 0.12} />
+            {SUBTITLE_LINES.map((line, i) => (
+              <FadeLine key={i} text={line} delay={0.45 + i * 0.12} />
             ))}
           </div>
 
           <motion.p
-            className="mt-8 text-[10px] font-mono uppercase tracking-[0.3em] text-zinc-500"
+            className="mt-8 text-[10px] font-mono uppercase tracking-[0.3em] text-slate-500"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.6, duration: 1 }}
+            transition={{ delay: 1.0, duration: 1 }}
             style={{ fontFamily: MONO }}
           >
-            ↓ Scroll to enter
+            ↓ Scroll to explore
           </motion.p>
         </motion.div>
       </div>
@@ -310,7 +303,7 @@ const Index = () => {
       {/* ── Portfolio content ── */}
       <div className="relative z-20 pt-[100vh]">
 
-        {/* === 1. Collision: Name ↔ Resume === */}
+        {/* === 1. Name ↔ Resume === */}
         <section className="min-h-screen flex items-center justify-center px-6 py-20">
           <div className="w-full max-w-5xl flex flex-col md:flex-row gap-6 items-stretch">
             <NameCard />
@@ -322,7 +315,6 @@ const Index = () => {
         <section className="flex items-center justify-center px-6 py-20">
           <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            {/* RSCMS — slides from left */}
             <motion.div
               className="h-80"
               initial={{ x: -200, opacity: 0 }}
@@ -333,7 +325,6 @@ const Index = () => {
               <RscmsCard />
             </motion.div>
 
-            {/* Sentry — slides from right (collides with RSCMS) */}
             <motion.div
               className="h-80"
               initial={{ x: 200, opacity: 0 }}
@@ -344,7 +335,6 @@ const Index = () => {
               <SentryCard />
             </motion.div>
 
-            {/* Data Analysis — full width, slides up */}
             <motion.div
               className="md:col-span-2 h-72"
               initial={{ y: 60, opacity: 0 }}

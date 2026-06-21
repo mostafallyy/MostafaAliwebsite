@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-// Labels and initial seeds for the live chart
+// Labels for the live chart — general CS / analytics metrics
 const METRICS = [
-  { label: "Threat Det.", color: "#22d3ee" },   // cyan
-  { label: "Patch Rate",  color: "#34d399" },   // emerald
-  { label: "Uptime",      color: "#a78bfa" },   // violet
-  { label: "Incidents",   color: "#fb923c" },   // orange
-  { label: "MTTD",        color: "#38bdf8" },   // sky
-  { label: "MTTR",        color: "#4ade80" },   // green
+  { label: "CPU Load",    color: "#818cf8" },   // indigo
+  { label: "Throughput",  color: "#34d399" },   // emerald
+  { label: "Uptime",      color: "#38bdf8" },   // sky
+  { label: "Requests",    color: "#fb923c" },   // orange
+  { label: "Latency",     color: "#a78bfa" },   // violet
+  { label: "Errors",      color: "#4ade80" },   // green
 ];
 
 function randomVal(min: number, max: number) {
@@ -18,7 +18,7 @@ function initialBars() {
   return METRICS.map(() => randomVal(30, 95));
 }
 
-// Sparkline points for "Threat Detection Trend" line chart
+// Sparkline points for the trend line
 function generateSparkline(count = 24): number[] {
   const pts: number[] = [];
   let v = 50;
@@ -46,7 +46,6 @@ function Sparkline({ data, color }: { data: number[]; color: string }) {
 
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ height: h }}>
-      {/* gradient fill under line */}
       <defs>
         <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={color} stopOpacity="0.25" />
@@ -66,7 +65,6 @@ function Sparkline({ data, color }: { data: number[]; color: string }) {
         strokeLinejoin="round"
         strokeLinecap="round"
       />
-      {/* live dot at last point */}
       {(() => {
         const last = data[data.length - 1];
         const lx = w;
@@ -91,7 +89,6 @@ export default function DataAnalysisCard() {
   const [sparkline, setSparkline] = useState(() => generateSparkline(24));
   const [tick, setTick] = useState(0);
 
-  // Bars update every 2.2s — smooth transition via CSS
   useEffect(() => {
     const id = setInterval(() => {
       setBars(METRICS.map((_, i) => {
@@ -103,7 +100,6 @@ export default function DataAnalysisCard() {
     return () => clearInterval(id);
   }, [bars]);
 
-  // Sparkline shifts right every 1.5s (new data point appended)
   useEffect(() => {
     const id = setInterval(() => {
       setSparkline(prev => {
@@ -119,13 +115,13 @@ export default function DataAnalysisCard() {
   const liveValue = Math.round(sparkline[sparkline.length - 1]);
 
   return (
-    <div className="flex flex-col h-full rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 p-5 gap-4">
+    <div className="flex flex-col h-full rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-900/90 p-5 gap-4">
       {/* Header */}
       <div className="flex items-center justify-between shrink-0">
         <div>
-          <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Power BI · Live Feed</p>
+          <p className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Power BI · Live</p>
           <h3 className="text-sm font-bold text-white mt-0.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            Security Operations Dashboard
+            Analytics Dashboard
           </h3>
         </div>
         <span className="flex items-center gap-1.5 text-[10px] font-mono text-emerald-400">
@@ -137,18 +133,18 @@ export default function DataAnalysisCard() {
         </span>
       </div>
 
-      {/* Sparkline — Threat Detection Trend */}
+      {/* Sparkline — Throughput Trend */}
       <div className="shrink-0">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-[10px] font-mono text-cyan-400/70 uppercase tracking-widest">Threat Detection Trend</span>
-          <span className="text-[10px] font-mono text-cyan-300">{liveValue}%</span>
+          <span className="text-[10px] font-mono text-indigo-400/70 uppercase tracking-widest">Throughput Trend</span>
+          <span className="text-[10px] font-mono text-indigo-300">{liveValue}%</span>
         </div>
-        <Sparkline data={sparkline} color="#22d3ee" />
+        <Sparkline data={sparkline} color="#818cf8" />
       </div>
 
       {/* Bar chart */}
       <div className="flex-1 flex flex-col justify-end gap-2 min-h-0">
-        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest shrink-0">KPI Overview</span>
+        <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest shrink-0">KPI Overview</span>
         <div className="flex items-end gap-2 h-24 w-full">
           {METRICS.map((m, i) => (
             <div key={m.label} className="flex flex-col items-center flex-1 gap-1 h-full justify-end">
@@ -162,7 +158,7 @@ export default function DataAnalysisCard() {
                   transition: "height 0.9s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               />
-              <span className="text-[8px] font-mono text-zinc-600 text-center leading-tight whitespace-nowrap">
+              <span className="text-[8px] font-mono text-slate-600 text-center leading-tight whitespace-nowrap">
                 {m.label}
               </span>
             </div>
@@ -171,9 +167,9 @@ export default function DataAnalysisCard() {
       </div>
 
       {/* Footer tick */}
-      <div className="flex items-center justify-between shrink-0 pt-1 border-t border-zinc-800/60">
-        <span className="text-[10px] font-mono text-zinc-600">Updated {tick}s ago</span>
-        <span className="text-[10px] font-mono text-zinc-600">∆ {randomVal(1, 9)} events/min</span>
+      <div className="flex items-center justify-between shrink-0 pt-1 border-t border-slate-800/60">
+        <span className="text-[10px] font-mono text-slate-600">Updated {tick}s ago</span>
+        <span className="text-[10px] font-mono text-slate-600">∆ {randomVal(1, 9)} events/min</span>
       </div>
     </div>
   );
