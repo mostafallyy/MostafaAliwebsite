@@ -4,6 +4,8 @@ import EarthScene from "@/components/EarthScene";
 import SentryCard from "@/components/SentryCard";
 import RscmsCard from "@/components/RscmsCard";
 import DataAnalysisCard from "@/components/DataAnalysisCard";
+import AiBookReaderCard from "@/components/AiBookReaderCard";
+import PantryChefCard from "@/components/PantryChefCard";
 
 // ─── Shared spring config ─────────────────────────────────────────────────────
 const SP = { type: "spring", stiffness: 480, damping: 32, mass: 0.8 } as const;
@@ -315,6 +317,7 @@ const Index = () => {
         <section className="flex items-center justify-center px-6 py-20">
           <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6">
 
+            {/* Row 1: RSCMS + Sentry */}
             <motion.div
               className="h-80"
               initial={{ x: -200, opacity: 0 }}
@@ -335,6 +338,28 @@ const Index = () => {
               <SentryCard />
             </motion.div>
 
+            {/* Row 2: AI Book Reader + PantryChef */}
+            <motion.div
+              className="h-80"
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ ...SP, delay: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              <AiBookReaderCard />
+            </motion.div>
+
+            <motion.div
+              className="h-80"
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ ...SP, delay: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              <PantryChefCard />
+            </motion.div>
+
+            {/* Row 3: Analytics — full width */}
             <motion.div
               className="md:col-span-2 h-72"
               initial={{ y: 60, opacity: 0 }}
