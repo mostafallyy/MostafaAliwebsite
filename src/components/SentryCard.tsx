@@ -96,6 +96,7 @@ export default function SentryCard() {
         <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
         <span className="w-3 h-3 rounded-full bg-green-500/80" />
         <span className="ml-2 text-xs text-slate-500 font-mono tracking-wide">sentry — audit.sh</span>
+        <a href="https://github.com/momo-Hendy/Sentry-Real-Time-Process-Auditor" target="_blank" rel="noopener noreferrer" className="ml-auto text-[10px] font-mono text-slate-600 hover:text-indigo-400 transition-colors">GitHub ↗</a>
       </div>
 
       {/* Terminal body */}

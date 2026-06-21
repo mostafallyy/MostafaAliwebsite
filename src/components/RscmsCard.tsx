@@ -95,6 +95,7 @@ export default function RscmsCard() {
         <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
         <span className="w-3 h-3 rounded-full bg-blue-500/80" />
         <span className="ml-2 text-xs text-slate-500 font-mono tracking-wide">rscms — compliance-audit.sh</span>
+        <a href="https://github.com/mostafallyy/Risk-Security-Management-System-RSCMS-" target="_blank" rel="noopener noreferrer" className="ml-auto text-[10px] font-mono text-slate-600 hover:text-indigo-400 transition-colors">GitHub ↗</a>
       </div>
 
       {/* Terminal body */}
